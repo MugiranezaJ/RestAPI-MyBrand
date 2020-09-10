@@ -3,8 +3,9 @@ var mongoose = require('mongoose')
 
 var app = express()
 var port = process.env.PORT || 3000;
+const dbURL = process.env.MONGODB_URI || "mongodb+srv://mjackson:jackson123@cluster0.j11nb.mongodb.net/RestAPI?retryWrites=true&w=majority"
 
-mongoose.connect('mongodb://localhost/restApi', { useNewUrlParser: true,  useUnifiedTopology: true })
+mongoose.connect(dbURL, { useNewUrlParser: true,  useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error',(err) => console.error(err))
 db.once('open', () => console.log('connected to database'))
@@ -16,7 +17,7 @@ var UserSchema = new mongoose.Schema({
     Name: String,
     Profession: String
 });
-var User = mongoose.model("mjackson", UserSchema, "mjackson")
+var User = mongoose.model("TestData", UserSchema, "TestData")
 
 app.get('/', (req, res) =>{
     var result = getData();
