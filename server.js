@@ -120,7 +120,7 @@ app.post('/api/login', (req, res) =>{
 })
 //wellcome route
 app.get('/', (req, res) =>{
-    res.send('Wellcome to Mjackso\'s restful Api')
+    res.send('Wellcome to Mjackson\'s restful Api')
 })
 
 // list all contacts
