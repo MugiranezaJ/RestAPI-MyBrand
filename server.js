@@ -11,7 +11,10 @@ var app = express()
 app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname +'public'))
+app.use(express.static('public'))
+console.log("directory: " + __dirname);
+console.log("cwd: " + process.cwd())
+
 
 var port = process.env.PORT || 3000;
 const dbURL = process.env.MONGODB_URI || "mongodb+srv://mjackson:jackson123@cluster0.j11nb.mongodb.net/RestAPI?retryWrites=true&w=majority"
