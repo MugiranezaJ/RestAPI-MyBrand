@@ -146,9 +146,9 @@ app.post('/api/contacts/view', verifyToken, function(req, res) {
 // add a new contact
 app.post('/api/contacts/add', function(req, res) {
 	contact.create({
-		Name : 'Mj',
-		Email : 'mj@gmail.com',
-        Message : 'Cool',
+		Name : req.body.name,
+		Email : req.body.email,
+        Message : req.body.message,
         ContactDate: new Date()
         }, 
         function(err, Contact) {
@@ -175,7 +175,7 @@ app.post('/api/newsletter/view', function(req, res) {
 app.post('/api/newsletter/add', function(req, res) {
 	newsletterModel.create({
 		//Name : 'Mj',
-		Email : 'mj@gmail.com',
+		Email : req.body.email,
         //Message : 'Cool',
         RequestDate: new Date()
         }, 
