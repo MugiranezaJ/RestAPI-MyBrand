@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 console.log("directory: " + __dirname);
 console.log("cwd: " + process.cwd())
-var testFolder = __dirname
+var testFolder = __dirname + '/public/images/articles'
 fs.readdir(testFolder, (err, files) => {
     files.forEach(file => {
       console.log(file);
