@@ -11,7 +11,7 @@ var app = express()
 app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'))
+app.use(express.static('/public'))
 
 var port = process.env.PORT || 3000;
 const dbURL = process.env.MONGODB_URI || "mongodb+srv://mjackson:jackson123@cluster0.j11nb.mongodb.net/RestAPI?retryWrites=true&w=majority"
@@ -219,7 +219,7 @@ app.post('/api/articles/add', verifyToken, upload.single('article_image'), funct
             res.setHeader('Content-Type', 'application/json')
             articlesModel.create({
                 Title : req.body.title/*'NodeJS, Express, MongoDB and Mongoose'*/,
-                FeaturedImage : '/images/' + req.file.filename /*'images/kbs.jpg'*/,
+                FeaturedImage : '/images/articles/' + req.file.filename /*'images/kbs.jpg'*/,
                 Description :req.body.description /*'nodejs and express.js tutorial which help to create CRUD operation using Monodb and Mongoose ORM. Mongodb is popular opensource no-SQL database.Mongoose is ORM(Object-relational mapping) that provide helpful methods to do operation with mongodb'*/,
                 PostDate: new Date()
             }, 
