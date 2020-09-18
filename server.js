@@ -134,7 +134,7 @@ app.get('/', (req, res) =>{
 })
 
 // list all contacts
-app.post('/api/contacts/view', verifyToken, function(req, res) {
+app.get('/api/contacts/view', verifyToken, function(req, res) {
     contact.find(function(err, contacts) {
         if (err)
             res.send(err)
@@ -163,7 +163,7 @@ app.post('/api/contacts/add', function(req, res) {
 });
 
 // list newsletter
-app.post('/api/newsletter/view', function(req, res) {
+app.get('/api/newsletter/view', function(req, res) {
     newsletterModel.find(function(err, emailInfo) {
         if (err)
             res.send(err)
@@ -191,7 +191,7 @@ app.post('/api/newsletter/add', function(req, res) {
 });
 
 // view articles
-app.post('/api/articles/view', function(req, res) {
+app.get('/api/articles/view', function(req, res) {
     var id = req.query.id
     console.log('id:' + id);
     if (id) {
@@ -248,7 +248,7 @@ app.post('/api/articles/add', verifyToken, upload.single('article_image'), funct
 });
 
 // view projects
-app.post('/api/projects/view', function(req, res) {
+app.get('/api/projects/view', function(req, res) {
     var id = req.query.id
     console.log('id:' + id);
     if (id) {
@@ -305,7 +305,7 @@ app.post('/api/projects/add', verifyToken, upload.single('project_image'), funct
 });
 
 // view skills
-app.post('/api/skills/view', function(req, res) {
+app.get('/api/skills/view', function(req, res) {
     var id = req.query.id
     console.log('id:' + id);
     if (id) {
@@ -361,7 +361,7 @@ app.post('/api/skills/add', verifyToken, upload.single('skill_image'), function(
 });
 
 // view profile
-app.post('/api/profile/view', function(req, res) {
+app.get('/api/profile/view', function(req, res) {
     profileModel.find(function(err, profile) {
         if (err)
             res.send(err)
