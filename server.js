@@ -118,6 +118,10 @@ app.post('/api/login', (req, res) =>{
         res.json({ token })
     })
 })
+//wellcome route
+app.get('/', (req, res) =>{
+    res.send('Wellcome to Mjackso\'s restful Api')
+})
 
 // list all contacts
 app.post('/api/contacts/view', verifyToken, function(req, res) {
