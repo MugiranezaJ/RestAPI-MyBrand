@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const multer = require('multer')
 var mongoose = require('mongoose')
 var jwt = require('jsonwebtoken')
+var fs = require('fs')
 
 
 //const app = express.Router({ mergeParams: true });
@@ -14,6 +15,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'))
 console.log("directory: " + __dirname);
 console.log("cwd: " + process.cwd())
+var testFolder = __dirname
+fs.readdir(testFolder, (err, files) => {
+    files.forEach(file => {
+      console.log(file);
+    });
+  });
 
 
 var port = process.env.PORT || 3000;
