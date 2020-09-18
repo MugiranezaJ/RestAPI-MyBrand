@@ -101,13 +101,13 @@ var storage = multer.diskStorage({
         //var fieldname = file.fieldname
         //console.log(file.fieldname == 'project_image')
         if(file.fieldname == 'article_image'){
-            cb(null, 'public/images/articles')
+            cb(null, __dirname + 'public/images/articles')
         }else if(file.fieldname == 'project_image'){
-            cb(null, 'public/images/projects')
+            cb(null, __dirname + 'public/images/projects')
         }else if(file.fieldname == 'skill_image'){
-            cb(null, 'public/images/skills')
+            cb(null, __dirname + 'public/images/skills')
         }else if(file.fieldname == 'profile_image'){
-            cb(null, 'public/images/profile')
+            cb(null, __dirname + 'public/images/profile')
         }else{
             console.log('fieldname not maching');
             
