@@ -146,9 +146,9 @@ app.post('/api/contacts/view', verifyToken, function(req, res) {
 // add a new contact
 app.post('/api/contacts/add', function(req, res) {
 	contact.create({
-		Name : req.body.name,
-		Email : req.body.email,
-        Message : req.body.message,
+		Name : '-' +req.body.name,
+		Email : '-' + req.body.email,
+        Message : '-' + req.body.message,
         ContactDate: new Date()
         }, 
         function(err, Contact) {
