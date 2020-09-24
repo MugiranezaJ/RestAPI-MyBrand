@@ -19,7 +19,7 @@ app.use(express.static('src/public'))
 //fs.readdir(testFolder, (err, files) => {
 //    files.forEach(file => {
 //    ;
-  console.log(file);
+  //console.log(file);
 //    });
 //  })
 import './config/connection.js'
