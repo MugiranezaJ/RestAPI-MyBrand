@@ -101,7 +101,7 @@ export function testArticles(app){
                 chai.expect(res).have.status(200);
                 chai.expect(res.body).be.a('object');
                 chai.expect(res.body).to.have.deep.property("_id")
-                done();
+                //done();
             })   
             .catch((err) =>{
                 console.log(err)
