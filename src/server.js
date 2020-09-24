@@ -11,11 +11,11 @@ import models from './models/models.js'
 export var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('src/public'))
+app.use(express.static(process.cwd() + '/src/public'))
 
 //console.log("directory: " + __dirname);
 console.log("cwd: " + process.cwd())
-var testFolder = process.cwd() // + '/public/images/articles'
+var testFolder = process.cwd() + '/src/public/images/articles'
 fs.readdir(testFolder, (err, files) => {
    files.forEach(file => {
    ;
