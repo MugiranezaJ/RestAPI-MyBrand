@@ -12,17 +12,16 @@ export var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('src/public'))
-//+++++++++++++++++ DELETE++++++++++++++
 
 //console.log("directory: " + __dirname);
 //console.log("cwd: " + process.cwd())
 //var testFolder = __dirname + '/public/images/articles'
 //fs.readdir(testFolder, (err, files) => {
 //    files.forEach(file => {
-//      console.log(file);
+//    ;
+  console.log(file);
 //    });
-//  });
-
+//  })
 import './config/connection.js'
 import {port} from './config/connection.js'
 
