@@ -97,7 +97,7 @@ export function testArticles(app){
             .set("Authorization", token)
             .send({"id":result._id})
             .then((res) => {
-                //console.log(res.body);
+                console.log("j");
                 chai.expect(res).have.status(200);
                 chai.expect(res.body).be.a('object');
                 chai.expect(res.body).to.have.deep.property("_id")
