@@ -34,7 +34,7 @@ getToken(app)
 
 //wellcome route
 app.get('/', (req, res) =>{
-    res.send('Wellcome to Mjackson\'s restful Api')
+    res.send('Wellcome to Mjackson\'s restful Api (directly)')
 })
 
 // ########## CONTACTS ##########

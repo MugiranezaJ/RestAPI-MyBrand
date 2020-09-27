@@ -1,7 +1,7 @@
 {
   "name": "heroku",
   "version": "1.0.0",
-  "description": "",
+  "description": "restful api for mjackson portfolio",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "mocha 'src/tests'",
     "build": "babel src --out-dir build"
   },
-  "author": "",
+  "author": "MJackson",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -36,5 +36,8 @@
     "jest": "^26.4.2",
     "mocha": "^8.1.3",
     "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "14.11.0"
   }
 }
