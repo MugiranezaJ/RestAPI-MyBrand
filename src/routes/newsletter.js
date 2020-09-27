@@ -21,7 +21,7 @@ export function createNewsletter(app){
                 console.log(err);
                 res.send('Status 403')
             }else{
-                console.log(req.body.email);
+                //console.log(req.body.email);
                 
                 newsletterModel.create({
                     //Name : 'Mj',

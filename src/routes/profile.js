@@ -31,7 +31,7 @@ export function updateProfile(app) {
                     About : req.body.about,
                     UpdatedTime: new Date()
                 }
-                console.log(req.file)
+                //console.log(req.file)
                 if (!file) {
                     const error = new Error('Please upload a file')
                     error.httpStatusCode = 400
