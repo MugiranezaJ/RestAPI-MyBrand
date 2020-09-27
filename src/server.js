@@ -35,7 +35,7 @@ getToken(app)
 
 //wellcome route
 app.get('/', (req, res) =>{
-    res.send('Wellcome to Mjackson\'s restful Api (github)')
+    res.send('Welcome to Mjackson\'s restful Api (github)')
 })
 
 // ########## CONTACTS ##########
