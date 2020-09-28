@@ -1,7 +1,11 @@
 {
   "name": "heroku",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "Restful api for mjackson portfolio",
+=======
+  "description": "restful api for mjackson portfolio",
+>>>>>>> master
   "main": "server.js",
   "type": "module",
   "scripts": {

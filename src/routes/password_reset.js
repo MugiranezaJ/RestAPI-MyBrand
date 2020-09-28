@@ -11,7 +11,7 @@ export function resetPasword(app) {
                 console.log(err);
                 res.send('Status 403')
             }else{
-                id = '5f62e91b84f2ac52061c0f35'
+                const id = '5f62e91b84f2ac52061c0f35'
                 adminModel.findById(id, (err, adminData) =>{
                     //adminData.toObject()
                     console.log(adminData.Password)
