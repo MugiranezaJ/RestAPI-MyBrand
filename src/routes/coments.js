@@ -63,3 +63,21 @@ export function createComment(app) {
         
     });
 }
+export function deleteComment(app) {
+    app.post('/api/comments/delete', (req, res) =>{
+        const id =  req.query.id
+        const comment = req.query.comment
+        const email = req.query.commentDate
+        if(!id){
+            res.json({code:2})
+        }else{
+            articlesModel.findByIdAndUpdate(id, 
+                {$pull:{Comments:{Comment:comment, Email:email}}},
+                (err, result) =>{
+                    if(err) console.log("DeleteErr[Comment]:" + err)
+                    res.json(result)
+                }
+            )
+        }
+    })
+}

@@ -14,14 +14,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(process.cwd() + '/src/public'))
 
 //console.log("directory: " + __dirname);
-console.log("cwd: " + process.cwd())
-var testFolder = process.cwd() + '/src/public/images/articles'
-fs.readdir(testFolder, (err, files) => {
-   files.forEach(file => {
-   ;
-  console.log(file);
-   });
- })
+// console.log("cwd: " + process.cwd())
+// var testFolder = process.cwd() + '/src/public/images/articles'
+// fs.readdir(testFolder, (err, files) => {
+//    files.forEach(file => {
+//    ;
+//   console.log(file);
+//    });
+//  })
 import './config/connection.js'
 import {port} from './config/connection.js'
 
@@ -63,11 +63,13 @@ updateArticle(app)
 // delete article
 deleteArticle(app)
 // ########## ARTICLES ##########
-import { getComments, createComment } from './routes/coments.js'
+import { getComments, createComment, deleteComment } from './routes/coments.js'
 // list all comments
 getComments(app)
 //create comment
 createComment(app)
+// delete comments
+deleteComment(app)
 // ########## PROJECTS ##########
 import {createProject, getProject} from './routes/projects.js'
 // view projects
