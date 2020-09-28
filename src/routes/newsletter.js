@@ -57,7 +57,7 @@ export function deleteNewsletter(app){
                             res.json(parserError(err));
                         }else{
                             res.json(emailInfo)
-                            console.log('delete created')
+                            console.log('deleted')
                         }   
                     }
                 );
