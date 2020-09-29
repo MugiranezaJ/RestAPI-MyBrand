@@ -1,4 +1,6 @@
-import 'nyc'
+// import 'coveralls'
+// Coveralls.wear!
+
 import assert from 'assert'
 import path from 'path'
 import chai from 'chai'
