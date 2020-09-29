@@ -24,18 +24,19 @@ app.use(express.static('src/public'))
 //  });
 
 import './config/connection.js'
-//import {port} from './config/connection.js'
+import {port} from './config/connection.js'
 
 import {upload} from './config/uploadHandler.js'
 
 // ########## AUTHANTICATION ##########
 import {getToken} from './config/previlage.js'
 // get token
+// get token
 getToken(app)
 
 //wellcome route
 app.get('/', (req, res) =>{
-    res.send('Wellcome to Mjackson\'s restful Api (github)')
+    res.send('Welcome to Mjackson\'s restful Api (directly)')
 })
 
 // ########## CONTACTS ##########
@@ -96,7 +97,7 @@ updateProfile(app)
 import {resetPasword} from './routes/password_reset.js'
 // admin
 resetPasword(app)
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
 var server = app.listen( port, () =>{
     console.log('Server started at port ' + port)
 })
