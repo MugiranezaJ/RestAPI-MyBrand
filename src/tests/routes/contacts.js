@@ -96,6 +96,23 @@ export function testContacts(app) {
             });
         })
     })
+    it("should return 403", (done)=>{
+        chai.request(app)
+        .post("/api/contacts/add")
+        .send(
+            {"name":"json"},
+            {"email":"json@man.rw"},
+            {"message":"hello there"}
+        )
+        .then((res) =>{
+            chai.expect(res).to.have.status(403)
+            done()
+        })
+        .catch((err) =>{
+            done(err)
+        })
+            
+    })
 
     after(function(done){
         this.timeout(20000);

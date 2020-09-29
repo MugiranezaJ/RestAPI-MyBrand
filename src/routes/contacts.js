@@ -21,8 +21,8 @@ export function createContact(app) {
     app.post('/api/contacts/add',verifyToken, function(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) => {
             if (err) {
-                console.log(err);
-                res.send('Status 403')
+                //console.log(err);
+                res.json({message:'404'})
             }else{
                 contactsModel.create({
                     Name : req.body.name,
