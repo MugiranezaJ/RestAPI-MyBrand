@@ -31,12 +31,12 @@ import {upload} from './config/uploadHandler.js'
 // ########## AUTHANTICATION ##########
 import {getToken} from './config/previlage.js'
 // get token
-// get token
+
 getToken(app)
 
 //wellcome route
 app.get('/', (req, res) =>{
-    res.send('Welcome to Mjackson\'s restful Api (directly)')
+    res.send('Welcome to Mjackson\'s restful Api (from github)')
 })
 
 // ########## CONTACTS ##########
