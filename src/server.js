@@ -39,11 +39,13 @@ app.get('/', (req, res) =>{
 })
 
 // ########## CONTACTS ##########
-import {createContact, getContacts} from './routes/contacts.js'
+import {createContact, getContacts, deleteContact} from './routes/contacts.js'
 // list all contacts
 getContacts(app)
 // add a new contact
 createContact(app)
+// delete a new contact
+deleteContact(app)
 // ########## NEWSLETTER ##########
 import {news, createNewsletter, deleteNewsletter} from './routes/newsletter.js'
 // list all newsletter

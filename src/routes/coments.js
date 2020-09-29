@@ -39,6 +39,8 @@ export function createComment(app) {
         const id = req.query.id
         if(!id){
             res.json({message:"post id error"})
+        }else if(!req.body.comment){
+            res.json({mesage:"message null"})
         }else{
             const commentData = [{ 
                         Username: req.body.username,
@@ -66,13 +68,17 @@ export function createComment(app) {
 export function deleteComment(app) {
     app.post('/api/comments/delete', (req, res) =>{
         const id =  req.query.id
-        const comment = req.query.comment
-        const email = req.query.commentDate
+        const comment = req.body.email
+        var cdate = req.body.commentDate
+        cdate = new Date(cdate)
+        console.log(comment);
+        console.log(cdate);
+        
         if(!id){
             res.json({code:2})
         }else{
             articlesModel.findByIdAndUpdate(id, 
-                {$pull:{Comments:{Comment:comment, Email:email}}},
+                {$pull:{Comments:{CommentDate: cdate}}},
                 (err, result) =>{
                     if(err) console.log("DeleteErr[Comment]:" + err)
                     res.json(result)

@@ -6,12 +6,28 @@ import jwt from 'jsonwebtoken'
 // list all newsletter
 export function news(app){
     app.get('/api/newsletter/view', function(req, res) {
-    newsletterModel.find(function(err, emailInfo) {
-        if (err)
-            res.send(err)
-        res.json(emailInfo);
-        console.log('Newletter returned')
-    });
+        var id = req.body.id
+        //console.log(id);
+        
+        if(id){
+            newsletterModel.findById(id,(err, email)=>{
+                if(err) 
+                    res.send({message:"DbErr", Error:err})
+                    console.log(err)
+                res.json(email)
+                //console.log("1 Newsletter returned");
+                
+            })
+        }else{
+            newsletterModel.find(function(err, emailInfo) {
+                if (err)
+                    res.send(err)
+                res.json(emailInfo);
+                //console.log('Newletter returned')
+            });
+        }
+    
+    
 });}
 // Create newsletter
 export function createNewsletter(app){
@@ -34,7 +50,7 @@ export function createNewsletter(app){
                             res.json(parserError(err));
                         }else{
                             res.json(emailInfo)
-                            console.log('Newsletter created')
+                            //console.log('Newsletter created')
                         }   
                     }
                 );
@@ -49,7 +65,7 @@ export function deleteNewsletter(app){
                 console.log(err);
                 res.sendStatus(403)
             }else{
-                console.log(req.body.email);
+                //console.log(req.body.email);
                 var id = req.body.id
                 newsletterModel.findOneAndDelete(id, 
                     function(err, emailInfo) {
@@ -57,7 +73,7 @@ export function deleteNewsletter(app){
                             res.json(parserError(err));
                         }else{
                             res.json(emailInfo)
-                            console.log('deleted')
+                            //console.log('deleted')
                         }   
                     }
                 );

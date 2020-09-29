@@ -4,6 +4,7 @@ import {app} from '../server.js'
 import {newsletterModel, articlesModel} from '../models/models.js'
 import { testArticles } from './routes/articles.js';
 import { getNewsletter } from './routes/newsletter.js';
+import { testContacts } from './routes/contacts.js';
 
 //describe()
 //test('adds 1 + 2 to equal 3', () => {
@@ -48,6 +49,7 @@ describe('Server*', function(){
     */
     testArticles(app)
     getNewsletter(app)
+    testContacts(app)
 /*
     describe('Projects', ()  => {
         it('shoild insert a project')
