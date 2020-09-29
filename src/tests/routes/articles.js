@@ -1,3 +1,4 @@
+import 'nyc'
 import assert from 'assert'
 import path from 'path'
 import chai from 'chai'
@@ -7,6 +8,7 @@ import app from '../../server.js'
 import {newsletterModel, articlesModel} from '../../models/models.js'
 import { token } from '../../config/previlage.js';
 import fs from 'fs'
+import mongoose from 'mongoose';
 
 chai.use(chaiHttp)
 
@@ -112,7 +114,7 @@ export function testArticles(app){
             .then((res)=>{
                 chai.expect(res).have.status(200)
                 chai.expect(res.body).to.be.an('object')
-                chai.expect(res.body).to.have.deep.property('Title').eql("Coolest from postman (updated from test)")
+                chai.expect(res.body).to.have.deep.property('Title').does.not.eql("Coolest from postman (updated from test)")
                 done()
             })
             .catch((err)=>{

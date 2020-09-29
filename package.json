@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node src/server.js",
     "devStart": "nodemon src/server.js",
-    "test": "mocha 'src/tests'",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register 'src/tests/*.js' --timeout 100000000 --exit",
     "build": "babel src --out-dir build",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc --all report --reporter=text-lcov | coveralls"
   },
   "author": "MJackson",
   "license": "ISC",
