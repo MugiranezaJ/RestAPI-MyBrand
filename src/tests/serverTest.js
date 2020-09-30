@@ -11,7 +11,7 @@ import { testProfile } from './routes/profile.js';
 
 
 describe('Server*', function(){
-    //testArticles(app)
+    testArticles(app)
     getNewsletter(app)
     testContacts(app)
     testSkills(app)
