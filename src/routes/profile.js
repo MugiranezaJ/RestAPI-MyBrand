@@ -11,7 +11,7 @@ export function getProfile(app) {
             if (err)
                 res.send(err)
             res.json(profile);
-            console.log('profile returned')
+            //console.log('profile returned')
         });
     });
 }
@@ -45,7 +45,7 @@ export function updateProfile(app) {
                             res.json(parserError(err));
                         }else{
                             res.json(profile)
-                            console.log('profile updated')
+                            //console.log('profile updated')
                         }   
                     }
                 );
@@ -70,7 +70,7 @@ export function resetProfile(app) {
                     res.send(err);
                 }else{
                     res.json(profile)
-                    console.log('profile reset')
+                    //console.log('profile reset')
                 }   
             }
         );

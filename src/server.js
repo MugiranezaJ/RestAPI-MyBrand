@@ -100,6 +100,11 @@ updateProfile(app)
 import {resetPasword} from './routes/password_reset.js'
 // admin
 resetPasword(app)
+
+// ########## DOCS ##########
+import {documentiation} from './routes/documentation.js'
+// serve documentation
+documentiation(app)
 //const port = process.env.PORT || 3000;
 var server = app.listen( port, () =>{
     console.log('Server started at port ' + port)

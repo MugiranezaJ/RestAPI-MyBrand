@@ -11,7 +11,7 @@ export function getContacts(app){
             if (err)
                 res.send(err)
             res.json(contacts);
-            console.log('Contacts returned')
+            //console.log('Contacts returned')
         });
     });
 }
@@ -35,7 +35,7 @@ export function createContact(app) {
                             res.json(parserError(err));
                         }else{
                             res.json(Contact)
-                            console.log('Contact created')
+                            //console.log('Contact created')
                         }   
                     }
                 );

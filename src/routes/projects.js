@@ -30,7 +30,7 @@ export function createProject(app) {
                         res.json(parserError(err));
                     }else{
                         res.json(project)
-                        console.log('project created')
+                        //console.log('project created')
                     }   
                 }
             );
@@ -56,7 +56,7 @@ export function getProject(app) {
                 if (err)
                     res.send(err)
                 res.json(projects);
-                console.log('projects returned')
+                //console.log('projects returned')
             });
         }
             

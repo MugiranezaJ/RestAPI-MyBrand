@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "devStart": "nodemon src/server.js",
-    "test": "nyc --reporter=html --reporter=text mocha 'src/tests/*.js' --timeout 100000000 --exit",
+    "test": "nyc --reporter=html mocha 'src/tests/*.js' --timeout 100000000 --exit",
     "build": "babel src --out-dir build",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -25,6 +25,8 @@
     "multer": "^1.4.2",
     "nyc": "^15.1.0",
     "supertest": "^4.0.2",
+    "swagger-jsdoc": "^4.2.0",
+    "swagger-ui-express": "^4.1.4",
     "validator": "^13.1.17"
   },
   "devDependencies": {
