@@ -4,6 +4,7 @@ import 'fs'
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         //var fieldname = file.fieldname
+        //cool with github
         //console.log(file.fieldname == 'project_image')
         if(file.fieldname == 'article_image'){
             cb(null, process.cwd() + '/src/public/images/articles')

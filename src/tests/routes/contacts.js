@@ -1,16 +1,21 @@
 
 import chai from 'chai'
 import chaiHttp from 'chai-http'
-import {newsletterModel} from '../../models/models.js'
+import {contactsModel} from '../../models/models.js'
 import { token } from '../../config/previlage.js';
 chai.use(chaiHttp)
-export function getNewsletter(app) {
+export function testContacts(app) {
+    var contact = {
+        "name":"js",
+        "email":"js@gmail.com",
+        "message":"mn vip"
+    }
     before(function(done){
         this.timeout(20000);
         chai.request(app)
-        .post('/api/newsletter/add')
+        .post('/api/contacts/add')
         .set("Authorization", token)
-        .send({"email":"jackswalter@test.rw"})
+        .send(contact)
         .end((err, res) => {
             if(err) done(err)                    
             // chai.expect(res).have.status(200);
@@ -18,12 +23,12 @@ export function getNewsletter(app) {
         done();
         });
     })
-    describe('Newsletter', function(){
+    describe('Contact', function(){
         this.timeout(5000); 
-        it('it should GET all the Newsletter', (done) => {
+        it('it should GET all the Contacts', (done) => {
             //.timeout(30 * 1000)
             chai.request(app)
-                .get('/api/newsletter/view')
+                .get('/api/contacts/view')
                 //.set({"Authorization": token})
                 .end((err, res) => {
                     if(err) done(err)
@@ -32,10 +37,10 @@ export function getNewsletter(app) {
                     done();
                 })
         });
-        it('should delete a newsletter', (done) =>{
-            newsletterModel.findOne({Email: "jackswalter@test.rw"}).then(function(result){
+        it('should delete a Contact', (done) =>{
+            contactsModel.findOne({Name: "js"}).then(function(result){
                 chai.request(app)
-                .post('/api/newsletter/delete')
+                .post('/api/contacts/delete')
                 .set('Content-Type', 'application/json')
                 .set("Authorization", token)
                 .send({"id":result._id})
@@ -53,9 +58,9 @@ export function getNewsletter(app) {
                 //assert.strictEqual(result , null, "Still exists")
             })
         })
-        // it('should view a newsletter', (done) =>{
+        // it('should view a Contact', (done) =>{
         //     chai.request(app)
-        //         .get('/api/newsletter/view')
+        //         .get('/api/contacts/view')
         //         .send({"id":"5f72d4aefbd82e0268c1fb89"})
         //         //.send({"email":"jackswalter@test.com"})
         //         .end((err, res) => {
@@ -69,11 +74,16 @@ export function getNewsletter(app) {
         //         })
         // })
         it('should insert a newsletters', (done) =>{
+            var icontacts = {
+                "name":"jx",
+                "email":"jx@gmail.com",
+                "message":"hi there"
+            }
             this.timeout(20000);
             chai.request(app)
-            .post('/api/newsletter/add')
+            .post('/api/contacts/add')
             .set("Authorization", token)
-            .send({"email":"mjacks@test.com"})
+            .send(icontacts)
             //.set('Content-Type', 'multipart/form-data')
             //.field("title","1article to delete" )
             //.attach("article_image", "download.jpg")
@@ -89,9 +99,9 @@ export function getNewsletter(app) {
 
     after(function(done){
         this.timeout(20000);
-        newsletterModel.findOne({Email: "mjacks@test.com"}).then(function(result){
+        contactsModel.findOne({Name: "jx"}).then(function(result){
             chai.request(app)
-            .post('/api/newsletter/delete')
+            .post('/api/contacts/delete')
             .set('Content-Type', 'application/json')
             .set("Authorization", token)
             .send({"id":result._id})

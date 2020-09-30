@@ -55,6 +55,7 @@ export function testArticles(app){
         })
         
         it('should delete article', function(done){
+            this.timeout(20000);
                 articlesModel.findOne({Title: "1article to delete"}).then(function(result){
                     chai.request(app)
                     .post('/api/articles/delete')
@@ -75,7 +76,20 @@ export function testArticles(app){
                     //assert.strictEqual(result , null, "Still exists")
                 })
         })
-        it('should view an article')
+        it('should view an article', (done)=>{
+            request(app)
+            .get('/api/articles/view')
+            .query({"id":"5f6386f45bcb341881d85681"})
+            .then((res)=>{
+                chai.expect(res).have.status(200)
+                chai.expect(res.body).be.a('object')
+                chai.expect(res.body).to.have.deep.property("_id")
+                done()
+            })
+            .catch((err) =>{
+                done(err)
+            })
+        })
         it('should view all articles', function(done){
             request(app)
             .get('/api/articles/view')
@@ -87,7 +101,24 @@ export function testArticles(app){
                 done()
             })
         })
-        it('should update an article')
+        it('should update an article', (done)=>{
+            var tdate = new Date()
+            request(app)
+            .post('/api/articles/update')
+            .set("Authorization", token)
+            //.query({})
+            .send({"title":"Coolest from postman (updated from test)"})
+            .send({"id":"5f6386f45bcb341881d85681"})
+            .then((res)=>{
+                chai.expect(res).have.status(200)
+                chai.expect(res.body).to.be.an('object')
+                chai.expect(res.body).to.have.deep.property('Title').eql("Coolest from postman (updated from test)")
+                done()
+            })
+            .catch((err)=>{
+                done(err)
+            })
+        })
     })
     after(function(){
         articlesModel.findOne({Title: "2Yeah from tests"}).then(function(result){
@@ -105,9 +136,24 @@ export function testArticles(app){
             })   
             .catch((err) =>{
                 console.log(err)
-                done(err)
+                //done(err)
             })                 
             //assert.strictEqual(result , null, "Still exists")
         })
+        request(app)
+            .post('/api/articles/update')
+            .set("Authorization", token)
+            //.query({})
+            .send({"title":"Coolest from postman"})
+            .send({"id":"5f6386f45bcb341881d85681"})
+            .then((res)=>{
+                chai.expect(res).have.status(200)
+                chai.expect(res.body).to.be.an('object')
+                chai.expect(res.body).to.have.deep.property('Title').eql("Coolest from postman (updated from test)")
+                //done()
+            })
+            .catch((err)=>{
+                //done(err)
+            })
     })
 }

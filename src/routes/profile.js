@@ -11,7 +11,7 @@ export function getProfile(app) {
             if (err)
                 res.send(err)
             res.json(profile);
-            console.log('Contacts returned')
+            console.log('profile returned')
         });
     });
 }

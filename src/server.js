@@ -11,18 +11,17 @@ import models from './models/models.js'
 export var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('src/public'))
-//+++++++++++++++++ DELETE++++++++++++++
+app.use(express.static(process.cwd() + '/src/public'))
 
 //console.log("directory: " + __dirname);
-//console.log("cwd: " + process.cwd())
-//var testFolder = __dirname + '/public/images/articles'
-//fs.readdir(testFolder, (err, files) => {
+// console.log("cwd: " + process.cwd())
+// var testFolder = process.cwd() + '/src/public/images/articles'
+// fs.readdir(testFolder, (err, files) => {
 //    files.forEach(file => {
-//      console.log(file);
+//    ;
+//   console.log(file);
 //    });
-//  });
-
+//  })
 import './config/connection.js'
 import {port} from './config/connection.js'
 
@@ -36,15 +35,17 @@ getToken(app)
 
 //wellcome route
 app.get('/', (req, res) =>{
-    res.send('Welcome to Mjackson\'s restful Api (from github)')
+    res.send('Wellcome to Mjackson\'s restful Api (directly)')
 })
 
 // ########## CONTACTS ##########
-import {createContact, getContacts} from './routes/contacts.js'
+import {createContact, getContacts, deleteContact} from './routes/contacts.js'
 // list all contacts
 getContacts(app)
 // add a new contact
 createContact(app)
+// delete a new contact
+deleteContact(app)
 // ########## NEWSLETTER ##########
 import {news, createNewsletter, deleteNewsletter} from './routes/newsletter.js'
 // list all newsletter
@@ -65,11 +66,13 @@ updateArticle(app)
 // delete article
 deleteArticle(app)
 // ########## ARTICLES ##########
-import { getComments, createComment } from './routes/coments.js'
+import { getComments, createComment, deleteComment } from './routes/coments.js'
 // list all comments
 getComments(app)
 //create comment
 createComment(app)
+// delete comments
+deleteComment(app)
 // ########## PROJECTS ##########
 import {createProject, getProject} from './routes/projects.js'
 // view projects

@@ -43,3 +43,26 @@ export function createContact(app) {
         })
     });
 }
+export function deleteContact(app){
+    app.post('/api/contacts/delete', verifyToken, function(req, res) {
+        jwt.verify(req.token, 'secretKey', (err, authData) => {
+            if (err) {
+                console.log(err);
+                res.sendStatus(403)
+            }else{
+                //console.log(req.body.email);
+                var id = req.body.id
+                contactsModel.findOneAndDelete(id, 
+                    function(err, emailInfo) {
+                        if (err){
+                            res.json(parserError(err));
+                        }else{
+                            res.json(emailInfo)
+                            //console.log('deleted')
+                        }   
+                    }
+                );
+            }
+        })
+    });
+}
