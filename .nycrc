@@ -1,0 +1,9 @@
+{
+  "all": true,
+  "include": [
+    "src/routes/**.js"
+  ],
+  "exclude": [
+      "build/"
+  ]
+}

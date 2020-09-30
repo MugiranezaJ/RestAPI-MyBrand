@@ -47,9 +47,9 @@ describe('Server*', function(){
     })
 
     */
-    testArticles(app)
+    // testArticles(app)
     getNewsletter(app)
-    testContacts(app)
+    // testContacts(app)
 /*
     describe('Projects', ()  => {
         it('shoild insert a project')

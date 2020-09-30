@@ -1,4 +1,3 @@
-
 import chai from 'chai'
 import chaiHttp from 'chai-http'
 import {newsletterModel} from '../../models/models.js'
