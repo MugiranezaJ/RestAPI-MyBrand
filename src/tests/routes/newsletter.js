@@ -2,6 +2,7 @@ import chai from 'chai'
 import chaiHttp from 'chai-http'
 import {newsletterModel} from '../../models/models.js'
 import { token } from '../../config/previlage.js';
+import { createNewsletter } from '../../routes/newsletter.js';
 chai.use(chaiHttp)
 export function getNewsletter(app) {
     before(function(done){

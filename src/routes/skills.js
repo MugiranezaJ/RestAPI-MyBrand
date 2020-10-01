@@ -30,7 +30,7 @@ export function createSkills(app) {
                         res.json(parserError(err));
                     }else{
                         res.json(skill)
-                        console.log('skills created')
+                        //console.log('skills created')
                     }   
                 }
             );
