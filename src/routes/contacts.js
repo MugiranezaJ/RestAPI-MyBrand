@@ -4,21 +4,17 @@ import jwt from 'jsonwebtoken'
 import bodyParser from 'body-parser'
 import {parserError} from '../config/errorHandler.js'
 // list all contacts
-export function getContacts(app){
-    
-    app.get('/api/contacts/view', function(req, res) {
+export class Contacts {
+    static getContacts(req, res) {
         contactsModel.find(function(err, contacts) {
             if (err)
                 res.send(err)
             res.json(contacts);
             //console.log('Contacts returned')
         });
-    });
-}
-// create a new contact
-export function createContact(app) {
-    //app.use(bodyParser.json())
-    app.post('/api/contacts/add',verifyToken, function(req, res) {
+    }
+    // create a new contact
+    static createContact(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) => {
             if (err) {
                 //console.log(err);
@@ -41,10 +37,8 @@ export function createContact(app) {
                 );
             }
         })
-    });
-}
-export function deleteContact(app){
-    app.post('/api/contacts/delete', verifyToken, function(req, res) {
+    }
+    static deleteContact(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) => {
             if (err) {
                 console.log(err);
@@ -64,5 +58,5 @@ export function deleteContact(app){
                 );
             }
         })
-    });
+    }
 }

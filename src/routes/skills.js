@@ -3,10 +3,9 @@ import {verifyToken} from '../config/security.js'
 import {upload} from '../config/uploadHandler.js'
 import jwt from 'jsonwebtoken'
 import { parserError } from '../config/errorHandler.js';
-
-// list skills
-export function createSkills(app) {
-    app.post('/api/skills/add', verifyToken, upload.single('skill_image'), function(req, res) {
+export class Skills{
+    // list skills
+    static createSkills(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) => {
             if (err) {
                 console.log(err);
@@ -36,14 +35,10 @@ export function createSkills(app) {
             );
             }
         })
-        
-    });
-}
+    }
 
-export function getSkills(app) {
-    app.get('/api/skills/view', function(req, res) {
+    static getSkills(req, res) {
         var id = req.query.id
-        console.log('id:' + id);
         if (id) {
             skillsModel.findById(id, (err, skillsData) =>{
                 if(err){
@@ -59,7 +54,5 @@ export function getSkills(app) {
                 console.log('projects returned')
             });
         }
-            
-    
-    });
+    }
 }

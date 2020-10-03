@@ -3,9 +3,9 @@ import {verifyToken} from '../config/security.js'
 import jwt from 'jsonwebtoken'
 import { parserError } from '../config/errorHandler.js';
 
-// password reset
-export function resetPasword(app) {
-    app.post('/api/admin/reset_password', verifyToken, (req, res) =>{
+export class Admin{
+    // password reset
+    static resetPasword(req, res){
         jwt.verify(req.token, 'secretKey', (err, authData) => {
             if (err) {
                 console.log(err);
@@ -13,13 +13,9 @@ export function resetPasword(app) {
             }else{
                 const id = '5f62e91b84f2ac52061c0f35'
                 adminModel.findById(id, (err, adminData) =>{
-                    //adminData.toObject()
-                    console.log(adminData.Password)
                     var currentPassword = adminData.Password
                     var oldPassword = req.body.oldPassword
-                    var newpassword = req.body.newPassword
-                    console.log(oldPassword + " " + currentPassword);
-                    
+                    var newpassword = req.body.newPassword                        
                     if(currentPassword != oldPassword) {
                         res.json({status: 4, message:'old password is incollect'})
                     }else{
@@ -41,5 +37,6 @@ export function resetPasword(app) {
                 })   
             }
         })
-    })
+    }
+
 }

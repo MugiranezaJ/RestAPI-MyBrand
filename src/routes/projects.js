@@ -3,9 +3,9 @@ import {verifyToken} from '../config/security.js'
 import {upload} from '../config/uploadHandler.js'
 import jwt from 'jsonwebtoken'
 import { parserError } from '../config/errorHandler.js';
-// create project
-export function createProject(app) {
-    app.post('/api/projects/add', verifyToken, upload.single('project_image'), function(req, res) {
+export class Projects{
+    // create project
+    static createProject(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) => {
             if (err) {
                 console.log(err);
@@ -36,12 +36,9 @@ export function createProject(app) {
             );
             }
         })
-        
-    });
-}
-// list all projects
-export function getProject(app) {
-    app.get('/api/projects/view', function(req, res) {
+    }
+    // list all projects
+    static getProject(req, res) {
         var id = req.query.id
         //console.log('id:' + id);
         if (id) {
@@ -60,6 +57,6 @@ export function getProject(app) {
             });
         }
             
-    
-    });
+
+    }
 }

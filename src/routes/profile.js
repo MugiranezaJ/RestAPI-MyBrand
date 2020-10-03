@@ -4,20 +4,18 @@ import {upload} from '../config/uploadHandler.js'
 import {parserError} from '../config/errorHandler.js'
 import jwt from 'jsonwebtoken'
 
-// view profile
-export function getProfile(app) {
-    app.get('/api/profile/view', function(req, res) {
+export class Profile{
+        // view profile
+    static getProfile(req, res) {
         profileModel.find(function(err, profile) {
             if (err)
                 res.send(err)
             res.json(profile);
             //console.log('profile returned')
         });
-    });
-}
-// update profile
-export function updateProfile(app) {
-    app.post('/api/profile/update', verifyToken, upload.single('profile_image'), function(req, res) {
+    }
+    // update profile
+    static updateProfile(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) =>{
             if(err){
                 res.sendStatus(403)
@@ -51,13 +49,9 @@ export function updateProfile(app) {
                 );
             }
         })
-        
-    });
-    
-}
-// reset profile
-export function resetProfile(app) {
-    app.post('/api/profile/reset', function(req, res) {
+    }
+    // reset profile
+    static resetProfile(req, res) {
         profileModel.create({
             Name : 'Mj',
             Caption : 'mj@gmail.com',
@@ -74,5 +68,5 @@ export function resetProfile(app) {
                 }   
             }
         );
-    });
+    }
 }
