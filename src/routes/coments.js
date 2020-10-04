@@ -2,10 +2,9 @@ import {contactsModel, articlesModel} from '../models/models.js'
 import {verifyToken} from '../config/security.js'
 import jwt from 'jsonwebtoken'
 import bodyParser from 'body-parser'
-// list all contacts
-export function getComments(app){
-    
-    app.get('/api/comments/view', function(req, res) {
+
+export class Comments{
+    static getComments(req, res) {
         const commentsContainer = []
         var counter = 0
         var commentsProjection = { 
@@ -29,13 +28,10 @@ export function getComments(app){
             //console.log(commentsContainer);
             commentsContainer.push({"size":counter})
             res.json(commentsContainer);
-            console.log('Comments returned')
         });
-    });
-}
-// create a new contact
-export function createComment(app) {
-    app.post('/api/comments/add',verifyToken, function(req, res) {
+    }
+    // create a new contact
+    static createComment(req, res) {
         const id = req.query.id
         if(!id){
             res.json({message:"post id error"})
@@ -57,33 +53,32 @@ export function createComment(app) {
                         res.json(err);
                     }else{
                         res.json(comment)
-                        console.log('Comment created')
                     }   
                 }
             );   
         }
-        
-    });
+    }
+    static deleteComment(app) {
+        app.post('/api/comments/delete', (req, res) =>{
+            const id =  req.query.id
+            const comment = req.body.email
+            var cdate = req.body.commentDate
+            cdate = new Date(cdate)
+            console.log(comment);
+            console.log(cdate);
+            
+            if(!id){
+                res.json({code:2})
+            }else{
+                articlesModel.findByIdAndUpdate(id, 
+                    {$pull:{Comments:{CommentDate: cdate}}},
+                    (err, result) =>{
+                        if(err) console.log("DeleteErr[Comment]:" + err)
+                        res.json(result)
+                    }
+                )
+            }
+        })
+    }
 }
-export function deleteComment(app) {
-    app.post('/api/comments/delete', (req, res) =>{
-        const id =  req.query.id
-        const comment = req.body.email
-        var cdate = req.body.commentDate
-        cdate = new Date(cdate)
-        console.log(comment);
-        console.log(cdate);
-        
-        if(!id){
-            res.json({code:2})
-        }else{
-            articlesModel.findByIdAndUpdate(id, 
-                {$pull:{Comments:{CommentDate: cdate}}},
-                (err, result) =>{
-                    if(err) console.log("DeleteErr[Comment]:" + err)
-                    res.json(result)
-                }
-            )
-        }
-    })
-}
+// list all contacts

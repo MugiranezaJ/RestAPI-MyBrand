@@ -4,9 +4,8 @@ import {upload} from '../config/uploadHandler.js'
 import {parserError} from '../config/errorHandler.js'
 import jwt from 'jsonwebtoken'
 
-export function getArticles(app) {
-    // view articles
-    app.get('/api/articles/view', function(req, res) {
+export class Articles{
+    static getArticles(req, res) {
         var id = req.query.id
         //console.log('id:' + id);
         if (id) {
@@ -21,17 +20,13 @@ export function getArticles(app) {
                 if (err)
                     res.send(err)
                 res.json(articles);
-                console.log('Articles returned')
+                //console.log('Articles returned')
             });
         }
-            
-
-    });
-}
-
-// create an article
-export function createArticle(app) {
-    app.post('/api/articles/add', verifyToken, upload.single('article_image'), function(req, res, next) {
+    }
+    
+    // create an article
+    static createArticle(req, res, next) {
         jwt.verify(req.token, 'secretKey', (err, authData) =>{
             if(err){
                 console.error(err)
@@ -56,18 +51,15 @@ export function createArticle(app) {
                         res.json(parserError(err));
                     }else{
                         res.json(article)
-                        console.log('article created')
+                        //console.log('article created')
                     }   
                 }
             );
             }
         })
-        
-    });
-}
-//update an article
-export function updateArticle(app) {
-    app.post('/api/articles/update', verifyToken, upload.single('article_image'), function(req, res) {
+    }
+    //update an article
+    static updateArticle(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) =>{
             if(err){
                 console.error(err)
@@ -93,7 +85,7 @@ export function updateArticle(app) {
                                 res.send(err);
                             }else{
                                 res.json(article)
-                                console.log('article Updated')
+                                //console.log('article Updated')
                             }   
                         }
                     );
@@ -112,7 +104,7 @@ export function updateArticle(app) {
                             res.send(err);
                         }else{
                             res.json(article)
-                            console.log('article Updated')
+                            //console.log('article Updated')
                         }   
                     });
                 }
@@ -120,13 +112,9 @@ export function updateArticle(app) {
             
             }
         })
-        
-    });
-}
-
-export function deleteArticle(app) {
-    // view articles
-    app.post('/api/articles/delete', verifyToken, function(req, res) {
+    }
+    
+    static deleteArticle(req, res) {
         jwt.verify(req.token, 'secretKey', (err, authData) =>{
             if(err){
                 console.error(err)
@@ -145,8 +133,7 @@ export function deleteArticle(app) {
                 }else{
                     res.json({message: "Provide id"})
                 }
-                }
-            })    
-
-    });
+            }
+        })
+    }
 }
