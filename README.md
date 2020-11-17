@@ -3,4 +3,4 @@
 [![Coverage Status](https://coveralls.io/repos/github/MugiranezaJ/RestAPI-MyBrand/badge.png?branch=master)](https://coveralls.io/github/MugiranezaJ/RestAPI-MyBrand?branch=master)
 
 
-Restful API for my Project
+Restful API for my Project(MyBrand).
